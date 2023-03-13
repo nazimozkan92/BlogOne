@@ -1,0 +1,124 @@
+﻿@model ITBlog.Business.DTO.FooterDTO
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!-- Footer
+============================================= -->
+<footer id="footer" class="dark">
+    <div class="container">
+
+        <!-- Footer Widgets
+        ============================================= -->
+        <div class="footer-widgets-wrap">
+
+            <div class="row col-mb-50">
+                <div class="col-lg-12">
+
+                    <div class="row col-mb-50">
+                        <div class="col-md-4">
+
+                            <div class="widget clearfix">
+
+                                @if (Model.FooterLogo != null)
+                                {
+                                    <img src="@Model.FooterLogo" alt="Image" class="footer-logo">
+                                }
+
+
+                                <div>
+                                    <abbr title="Telefon Numarası"><strong>Telefon:</strong></abbr> +90 (532) 224 7121<br>
+                                    <abbr title="Email Adresi"><strong>Email:</strong></abbr> aytgeren@gmail.com
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="widget widget_links clearfix">
+
+                                <h4>Kısa Yollar</h4>
+
+                                <ul>
+                                    @if (Model.Categories != null){
+                                        @if (Model.Categories.Count > 0)
+                                        {
+                                            @foreach (var category in Model.Categories)
+                                            {
+                                                if (category.CategoryName == "Anasayfa" || category.CategoryName == "Hakkimizda")
+                                                {
+                                                    <li><a href="@category.CategoryUrl">@Html.Raw(category.CategoryName)</a></li>
+                                                }
+                                                else
+                                                {
+                                                    <li><a href="@category.CategoryUrl/@category.Id">@Html.Raw(category.CategoryName)</a></li>
+                                                }
+                                            }
+                                        }
+                                    }
+
+                                </ul>
+
+                            </div>
+
+                        </div>
+
+                        <div class="col-md-4">
+
+                            <div class="widget clearfix">
+                                <h4>Son Gönderiler</h4>
+                                <div class="posts-sm row col-mb-30" id="post-list-footer">
+
+                                    @if (Model.Posts != null)
+                                    {
+                                        @foreach (var post in Model.Posts)
+                                        {
+                                            <div class="entry col-12">
+                                                <div class="grid-inner row">
+                                                    <div class="col">
+                                                        <div class="entry-title">
+                                                            <h4><a href="/Post/GetPostById/@post.Id">@Html.Raw(post.Title)</a></h4>
+                                                        </div>
+                                                        <div class="entry-meta">
+                                                            <ul>
+                                                                <li>@post.CreatedDateTime</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div><!-- .footer-widgets-wrap end -->
+
+    </div>
+
+    <!-- Copyrights
+    ============================================= -->
+    <div id="copyrights">
+        <div class="container">
+
+            <div class="row col-mb-30">
+
+                <div class="col-md-6 text-center text-md-start">
+                    Copyrights &copy; @DateTime.Now.ToString("yyyy") All Rights Reserved by Eren Tech<br>
+                </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </div>
+    </div><!-- #copyrights end -->
+</footer><!-- #footer end -->
